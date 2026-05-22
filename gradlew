@@ -57,7 +57,7 @@ if [ ! -x "$JAVACMD" ] ; then
     die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH."
 fi
 
-GRADLE_OPTS="${GRADLE_OPTS} \"-Dorg.gradle.appname=$APP_BASE_NAME\""
+GRADLE_OPTS="${GRADLE_OPTS} -Dorg.gradle.appname=$APP_BASE_NAME"
 
 exec "$JAVACMD" \
     $DEFAULT_JVM_OPTS \
