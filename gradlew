@@ -60,7 +60,8 @@ fi
 GRADLE_OPTS="${GRADLE_OPTS} -Dorg.gradle.appname=$APP_BASE_NAME"
 
 exec "$JAVACMD" \
-    $DEFAULT_JVM_OPTS \
+    -Xmx64m \
+    -Xms64m \
     $JAVA_OPTS \
     $GRADLE_OPTS \
     "-Dorg.gradle.appname=$APP_BASE_NAME" \
