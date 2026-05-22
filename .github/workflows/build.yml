@@ -19,11 +19,12 @@ jobs:
         with:
           packages: "platforms;android-34 build-tools;34.0.0 cmake;3.22.1 ndk;27.0.12077973"
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Build APK
-        run: gradle assembleDebug --stacktrace --info
+      - name: Download & Build
+        run: |
+          curl -sL -o /tmp/gradle-wrapper.jar \
+            https://github.com/gradle/gradle/raw/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          java -classpath /tmp/gradle-wrapper.jar \
+            org.gradle.wrapper.GradleWrapperMain assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
