@@ -19,17 +19,11 @@ jobs:
         with:
           packages: "platforms;android-34 build-tools;34.0.0 cmake;3.22.1 ndk;27.0.12077973"
 
-      - name: Verify gradle wrapper
-        run: |
-          echo "=== ls gradle/wrapper ==="
-          ls -la gradle/wrapper/
-          echo "=== jar file type ==="
-          file gradle/wrapper/gradle-wrapper.jar || echo "JAR NOT FOUND"
-          echo "=== jar test ==="
-          jar tf gradle/wrapper/gradle-wrapper.jar 2>&1 | head -5 || echo "INVALID JAR"
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build APK
-        run: java -classpath gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace --info
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
